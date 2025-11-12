@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI & ML Integrated Concrete Mix Design | SmartBuild</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <img src="/assets/smartbuild.png" alt="SmartBuild Logo" class="logo">
+  </div>
+  <div class="header-right">
+    <h1>AI & ML Integrated Concrete Mix Design Predictor</h1>
+    <h2>Machine Learning Model integrated with IS 10262:2019</h2>
+    <nav>
+      <a href="/">🏠 Home</a>
+      <a href="/about">📘 About Project</a>
+    </nav>
+    <div class="credit-box">
+      <p><strong>Developed by:</strong> Amrit Pal</p>
+      <p><strong>Branch:</strong> Civil Engineering | Batch 2024</p>
+      <p><strong>Institute:</strong> Dr. B. R. Ambedkar National Institute of Technology Jalandhar</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="form-section">
+    <h3>🧱 Input Mix Parameters</h3>
+    <form method="POST">
+      <div class="form-grid">
+        <label>Required Strength fck (MPa)</label>
+        <input type="number" name="fck" step="0.1" value="30" required>
+
+        <label>Cement Type</label>
+        <select name="ctype">
+          <option>OPC33</option><option>OPC43</option><option>OPC53</option>
+          <option>PPC</option><option>PSC</option><option>Composite</option>
+        </select>
+
+        <label>Aggregate Type</label>
+        <select name="agg_type"><option>Crushed</option><option>Rounded</option></select>
+
+        <label>Max Aggregate Size (mm)</label>
+        <select name="agg_size"><option>10</option><option selected>20</option><option>40</option></select>
+
+        <label>Fine Aggregate Zone</label>
+        <select name="fzone"><option>I</option><option selected>II</option><option>III</option><option>IV</option></select>
+
+        <label>Exposure Condition</label>
+        <select name="exposure">
+          <option>Mild</option><option selected>Moderate</option><option>Severe</option><option>Very Severe</option>
+        </select>
+
+        <label>Desired Slump (mm)</label>
+        <input type="number" name="slump" value="75">
+
+        <label>Admixture Type</label>
+        <select name="admixt">
+          <option selected>None</option><option>Normal_SP</option><option>HighRange_SP</option>
+        </select>
+
+        <label>Admixture Dosage (%)</label>
+        <input type="number" step="0.1" name="admix_dos" value="0.5">
+
+        <label>Mineral Admixture (%)</label>
+        <input type="number" step="0.1" name="min_add" value="20">
+      </div>
+
+      <button type="submit" class="predict-btn">🔍 Predict Mix Design</button>
+    </form>
+  </section>
+
+  {% if warnings %}
+  <section class="warnings">
+    <ul>
+      {% for w in warnings %}
+      <li>⚠️ {{w}}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if result %}
+  <section class="result-section">
+    <h3>🏗️ Predicted Concrete Mix Proportions (kg/m³)</h3>
+    <table>
+      <tr><th>Component</th><th>Quantity (kg/m³)</th></tr>
+      <tr><td>Cementitious Material</td><td>{{result.cement}}</td></tr>
+      <tr><td>Water</td><td>{{result.water}}</td></tr>
+      <tr><td>Fine Aggregate</td><td>{{result.fine}}</td></tr>
+      <tr><td>Coarse Aggregate</td><td>{{result.coarse}}</td></tr>
+    </table>
+
+    <div class="stats">
+      <p><strong>Water-Cement Ratio:</strong> {{result.wc}}</p>
+      <p><strong>Factor X:</strong> {{result.factor_x}}</p>
+      <p><strong>Std Deviation S:</strong> {{result.std_s}}</p>
+      <p><strong>Total Mix Mass:</strong> {{result.total}} kg/m³</p>
+      <p><strong>FA/(FA + CA):</strong> {{result.fa_ca}}</p>
+    </div>
+
+    <form method="POST" action="/download-report">
+      {% for k, v in result.items() %}
+      <input type="hidden" name="{{k}}" value="{{v}}">
+      {% endfor %}
+      <button type="submit" class="pdf-btn">📄 Download PDF Report</button>
+    </form>
+  </section>
+  {% endif %}
+</main>
+
+<footer>
+  <p>© 2025 SmartBuild byAmrit | AI & ML Integrated Concrete Mix Design</p>
+</footer>
+
+</body>
+</html>
+
+

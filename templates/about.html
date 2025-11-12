@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Project | SmartBuild</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <img src="/assets/smartbuild.png" alt="SmartBuild Logo" class="logo">
+  </div>
+  <div class="header-right">
+    <h1>About This Project</h1>
+    <nav>
+      <a href="/">🏠 Home</a>
+      <a href="/about" class="active">📘 About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="about-section">
+    <h3>Project Overview</h3>
+    <p>
+      <strong>AI & ML Integrated Concrete Mix Design Predictor</strong> (SmartBuild) is an engineering tool that uses
+      Machine Learning to estimate concrete mix proportions consistent with IS 10262:2019 guidelines.
+      The ML model accelerates mix design by quickly suggesting cementitious content, water, fine and coarse aggregate
+      quantities for a required 28-day strength and other site parameters.
+    </p>
+
+    <h3>Standards & Methodology</h3>
+    <ul>
+      <li><strong>Standard:</strong> IS 10262:2019 — Recommended guidelines for concrete mix proportioning.</li>
+      <li><strong>ML Model:</strong> Random Forest (multi-output) trained on an IS-derived dataset covering various
+        cement types (OPC/PPC/PSC) and aggregate conditions.</li>
+      <li><strong>Key automated steps:</strong> Auto-selection of water-cement ratio (w/c) using IS curves, Factor X,
+        and standard deviation S for target mean strength calculation.</li>
+    </ul>
+
+    <h3>Tech Stack</h3>
+    <ul>
+      <li>Backend: <strong>Flask (Python)</strong></li>
+      <li>ML: <strong>scikit-learn (RandomForestRegressor)</strong></li>
+      <li>PDF generation: <strong>reportlab</strong></li>
+      <li>Frontend: HTML, CSS (assets/style.css)</li>
+    </ul>
+
+    <h3>Developer & Institute</h3>
+    <p><strong>Amrit Pal</strong><br>
+    Civil Engineering | Batch 2024<br>
+    <strong>Dr. B. R. Ambedkar National Institute of Technology Jalandhar</strong><br>
+    Portfolio: SmartBuild byAmrit</p>
+
+    <h3>Future Work</h3>
+    <ul>
+      <li>Integrate real trial mix feedback to improve ML accuracy</li>
+      <li>Add cost-optimization using material prices</li>
+      <li>Provide downloadable CSV for batching plant input</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 SmartBuild byAmrit | AI & ML Integrated Concrete Mix Design</p>
+</footer>
+
+</body>
+</html>
